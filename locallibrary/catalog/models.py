@@ -7,7 +7,7 @@ import uuid # Required for unique book instances
 class Genre(models.Model):
     """Model representing a book genre."""
     name = models.CharField(max_length=200, 
-    help_text='Enter a book genre (e.g., Science Fiction')
+    help_text='Enter a book genre (e.g., Science Fiction)')
 
     def __str__(self):
         """String for representing the Model object."""
@@ -33,12 +33,12 @@ class Book(models.Model):
     help_text='13 Character <a href="https://www.isbn-international.org/\
     content/what-isbn">ISBN number</a>')
 
-    # ManyToManyField used becuase genere can contain many books.
-    # Books can contain many genres.
+    # ManyToManyField used because genre can contain many books and
+    # books can contain many genres.
     
     # Genre class has already been defined so we can specify the object above.
     genre = models.ManyToManyField(Genre, 
-    help_text='Select a gener for this book')
+    help_text='Select a genre for this book.')
 
     language = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
 
@@ -46,16 +46,26 @@ class Book(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        """Returns the URL to access a detail record for thiss book."""
+        """Returns the URL to access a detail record for this book."""
         return reverse('book-detail', args=[str(self.id)])
 
+    def display_genre(self):
+        """Create a string for the Genre. This is required to display
+        genre in Admin. The ManyToManyField prevent the __str__ 
+        from performing this function."""
+
+        # Return a string from the first three values of the genre field 
+        # (if they exist) and creates a short_description
+        return ', '.join(genre.name for genre in self.genre.all()[:3])
+
+    display_genre.short_description = 'Genre'
 
 class BookInstance(models.Model):
     """Model representing a specific copy of a book 
     (i.e., that can be borrowed from the library)."""
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, 
-        help_text='Unoque ID for this particular book across whole library')
+        help_text='Unique ID for this particular book across whole library.')
 
     book = models.ForeignKey('Book', on_delete=models.RESTRICT, null=True)
 
@@ -77,7 +87,7 @@ class BookInstance(models.Model):
         help_text='Book availabilty'
     )
 
-
+    # Creating the ordering in which the books are to be displayed.
     class Meta:
         ordering = ['due_back']
 
