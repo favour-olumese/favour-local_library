@@ -18,7 +18,7 @@ def index(request):
 
     num_genres = Genre.objects.all().count()
 
-    num_christian_genre = Genre.objects.filter(name='Christianity')
+    book_starts_with_t = Book.objects.filter(title__istartswith='T').count()
 
     context = {
         'num_books': num_books,
@@ -26,7 +26,7 @@ def index(request):
         'num_instance_available': num_instance_available,
         'num_authors': num_authors,
         'num_genres': num_genres,
-        'num_christian_genre': num_christian_genre,
+        'book_starts_with_t': book_starts_with_t,
     }
 
     # Render the HTML template index.html with the data in the context variable

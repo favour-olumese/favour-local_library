@@ -1,6 +1,10 @@
 {% extends "catalog/base_generic.html" %}
 
-{% block content%}
+{% block title %}
+    <title>Local Library Home</title>
+{% endblock %}
+
+{% block content %}
     <h1>Local Library Home</h1>
     <p>
         Welcome to LocalLibrary, a website based on 
@@ -14,6 +18,6 @@
         <li><strong>Copies available:</strong> {{ num_instance_available }}</li>
         <li><strong>Authors:</strong> {{ num_authors }}</li>
         <li><strong>Genres:</strong> {{ num_genres }}</li>
-        <li><strong>Christian genres:</strong> {{ num_christian_genre }}</li>
+        <li><strong>Books starting with letter T:</strong> {{ book_starts_with_t }}</li>
     </ul>
 {% endblock %}
