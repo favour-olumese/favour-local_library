@@ -1,9 +1,13 @@
 {% extends "catalog/base_generic.html" %}
 
+{% block title %}
+    <title>Local Library | {{ book.title }}</title>
+{% endblock%}
+
 {% block content %}
     <h1>Title: {{ book.title }}</h1>
 
-    <p><strong>Author:</strong> <a href="">{{ book.author }}</a></p>
+    <p><strong>Author:</strong> <a href="{{ book.author.get_absolute_url }}">{{ book.author }}</a></p>
     <p><strong>Summary:</strong> {{ book.summary }}</p>
     <p><strong>ISBN:</strong> {{ book.isbn }}</p>
     <p><strong>Language:</strong> {{ book.language }}</p>
