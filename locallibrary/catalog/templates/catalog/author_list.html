@@ -9,10 +9,20 @@
     {% if author_list %}
     <ul>
         {% for author in author_list %}
-            <li><a href="{{ author.get_absolute_url }}">{{ author.last_name }}, {{ author.first_name }}</a></li>
+            <li><a href="{{ author.get_absolute_url }}">{{ author.last_name }}, {{ author.first_name }}</a>
+                {% if perms.catalog.can_edit_author %}
+                    - 
+                    <a href="{% url 'author-update' author.id %}">Edit author</a> - 
+                    <a href="{% url 'author-delete' author.id %}">Delete author</a>
+                {% endif %}
+            </li>
         {% endfor %}
     </ul>
     {% else %}
         <p>There are no authors.</p>
+    {% endif %}
+
+    {% if perms.catalog.can_edit_author %}
+        <button type="button"><a href="{% url 'author-create' %}">Add new author</a></button>
     {% endif %}
 {% endblock %}

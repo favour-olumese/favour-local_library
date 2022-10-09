@@ -11,11 +11,20 @@
         <ul>
             {% for book in book_list %}
                 <li>
-                    <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
+                    <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}}) 
+                    {% if perms.catalog.can_edit_books %}
+                        - 
+                        <a href="{% url 'book-update' book.id %}">Edit book</a> - 
+                        <a href="{% url 'book-delete' book.id %}">Delete book</a>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
     {% else %}
         <P>There are no books in the library.</P>
+    {% endif %}
+
+    {% if perms.catalog.can_edit_books %}
+        <button type="button"><a href="{% url 'book-create' %}">Add new book</a></button>
     {% endif %}
 {% endblock %}

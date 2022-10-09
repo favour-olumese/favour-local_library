@@ -61,6 +61,9 @@ class Book(models.Model):
 
     display_genre.short_description = 'Genre'
 
+    class Meta:
+        permissions = (('can_edit_books', 'Edit books\' details'),)
+
 class BookInstance(models.Model):
     """Model representing a specific copy of a book 
     (i.e., that can be borrowed from the library)."""
@@ -93,7 +96,9 @@ class BookInstance(models.Model):
     # Creating the ordering in which the books are to be displayed.
     class Meta:
         ordering = ['due_back']
-        permissions = (("can_mark_returned", "Set book as returned"),)
+        permissions = (("can_mark_returned", "Set book as returned"),
+                        ("can_renew", "Renew book due date"),
+                        )
 
     def __str__(self):
         """String for representing the Model object."""
@@ -113,6 +118,7 @@ class Author(models.Model):
 
     class Meta:
         ordering = ['last_name', 'first_name']
+        permissions = (('can_edit_authors', 'Edit authors\' details'),)
 
     def get_absolute_url(self):
         """Return the URL to access a particular author instance."""
@@ -131,4 +137,3 @@ class Language(models.Model):
     def __str__(self):
         """String for representing Model object."""
         return self.name
-

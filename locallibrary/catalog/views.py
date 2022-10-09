@@ -1,7 +1,13 @@
-from django.shortcuts import render
+import datetime
+from django.shortcuts import render, get_object_or_404
 from .models import Book, Author, BookInstance, Genre
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.urls import reverse, reverse_lazy
+from catalog.forms import RenewBookForm
+from django.contrib.auth.decorators import login_required, permission_required
+from django.http import HttpResponseRedirect
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Create your views here.
 def index(request):
@@ -71,3 +77,68 @@ class BorrowedBooksListView(PermissionRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return BookInstance.objects.filter(status__exact='o').order_by('due_back')
+
+@login_required
+@permission_required('catalog.can_renew', raise_exception=True)
+def renew_book_librarian(request, pk):
+    book_instance = get_object_or_404(BookInstance, pk=pk)
+
+    # If this is a POST request, the process and 
+    # populate it wwith data from the request (binding).
+    form = RenewBookForm(request.POST)
+
+    # Check if the form is valid:
+    if form.is_valid():
+        # process the data in form.cleaned_data as required 
+        # (here we just write it to the model due_back field)
+        book_instance.due_back = form.cleaned_data['renewal_date']
+        book_instance.save()
+
+        # Redirect to a new URL:
+        return HttpResponseRedirect(reverse('borrowed-books'))
+
+    # If this is a GET reques 
+    # (or any other method) create the default form.
+    else:
+        proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
+        form = RenewBookForm(initial={'renewal_date': proposed_renewal_date})
+
+    context = {
+        'form': form,
+        'book_instance': book_instance,
+    }
+
+    return render(request, 'catalog/book_renew_librarian.html', context)
+
+class AuthorCreate(PermissionRequiredMixin, CreateView):
+    model = Author
+    fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
+    initial = {'date_of_birth': '0999-12-28'}
+    permission_required = 'catalog.can_edit_authors'
+
+class AuthorUpdate(PermissionRequiredMixin, UpdateView):
+    model = Author
+    fields = '__all__'  # Not recommended.
+    # (potential security issue if more fields are added).
+    permission_required = 'catalog.can_edit_authors'
+
+class AuthorDelete(PermissionRequiredMixin, DeleteView):
+    model = Author
+    success_url = reverse_lazy('authors')
+    permission_required = 'catalog.can_edit_authors'
+
+class BookCreate(PermissionRequiredMixin, CreateView):
+    model = Book
+    fields = ['title', 'author', 'summary', 'isbn', 'genre', 'language']
+    permission_required = 'catalog.can_edit_books'
+
+class BookUpdate(PermissionRequiredMixin, UpdateView):
+    model = Book
+    fields = ['title', 'author', 'summary', 'isbn', 'genre', 'language']
+    # (potential security issue if more fields are added).
+    permission_required = 'catalog.can_edit_books'
+
+class BookDelete(PermissionRequiredMixin, DeleteView):
+    model = Book
+    success_url = reverse_lazy('books')
+    permission_required = 'catalog.can_edit_books'
