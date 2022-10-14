@@ -1,7 +1,7 @@
 {% extends "catalog/base_generic.html" %}
 
 {% block title %}
-    <title>Local Library | Authors</title>
+    <title>Favour Local Library | Authors</title>
 {% endblock%}
 
 {% block content %}
@@ -10,7 +10,7 @@
     <ul>
         {% for author in author_list %}
             <li><a href="{{ author.get_absolute_url }}">{{ author.last_name }}, {{ author.first_name }}</a>
-                {% if perms.catalog.can_edit_author %}
+                {% if perms.catalog.can_edit_authors %}
                     - 
                     <a href="{% url 'author-update' author.id %}">Edit author</a> - 
                     <a href="{% url 'author-delete' author.id %}">Delete author</a>
@@ -22,7 +22,7 @@
         <p>There are no authors.</p>
     {% endif %}
 
-    {% if perms.catalog.can_edit_author %}
-        <button type="button"><a href="{% url 'author-create' %}">Add new author</a></button>
+    {% if perms.catalog.can_edit_authors %}
+        <a href="{% url 'author-create' %}"><button type="button">Add new author</button></a>
     {% endif %}
 {% endblock %}

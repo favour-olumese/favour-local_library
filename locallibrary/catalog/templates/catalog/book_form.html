@@ -1,5 +1,16 @@
 {% extends "catalog/base_generic.html" %}
 
+{% block title %}
+    <title>Favour Local Library | 
+        {% if book %}
+            Edit {{book.title}}
+
+        {% else %}
+            New Book
+        {% endif %}
+    </title>
+{% endblock%}
+
 {% block content %}
     <form action="" method="post">
         {% csrf_token %}

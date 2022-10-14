@@ -1,5 +1,9 @@
 {% extends "catalog/base_generic.html" %}
 
+{% block title %}
+    <title>Favour Local Library | Delete {{ book }}</title>
+{% endblock%}
+
 {% block content %}
     <h1>Delete Book</h1>
     
@@ -20,10 +24,11 @@
             {% endfor %}
         </p>
     {% else %}
-        <p>Are you sure you want to delete the book: {{ book }}?</p>
+        <p>Are you sure you want to delete the book: <strong>{{ book }}</strong>?</p>
         <form action="" method="post">
             {% csrf_token %}
             <input type="submit" value="Submit">
+            <input type="submit" onclick="window.location='{% url 'books' %}'; return false;" value="Cancel">
         </form>
         <br>
     {% endif %}

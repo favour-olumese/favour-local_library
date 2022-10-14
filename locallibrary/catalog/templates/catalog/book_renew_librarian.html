@@ -1,5 +1,9 @@
 {% extends "catalog/base_generic.html" %}
 
+{% block title %}
+    <title>Favour Local Library | Renew {{ book_instance.book.title }}</title>
+{% endblock%}
+
 {% block content %}
     <h1>Renew: {{ book_instance.book.title }}</h1>
     <p>Borrower: {{ book_instance.borrower }}</p>

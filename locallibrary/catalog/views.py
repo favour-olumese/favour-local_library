@@ -143,15 +143,17 @@ class BookDelete(PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy('books')
     permission_required = 'catalog.can_edit_books'
 
-# class BookInstanceCreate(PermissionRequiredMixin, CreateView):
-#     model = Book
-#     fields = ['id', 'book', 'imprint', 'due_back', 'borrower', 'status']
-#     permission_required = 'catalog.can_edit_books'
+class BookInstanceCreate(PermissionRequiredMixin, CreateView):
+    model = BookInstance
+    fields = ['id', 'book', 'imprint', 'due_back', 'borrower', 'status']
+    permission_required = 'catalog.can_edit_books'
+    success_url = reverse_lazy('books')
 
-# class BookCreate(PermissionRequiredMixin, CreateView):
-#     model = BookInstance
-#     fields = ['id', 'book', 'imprint', 'due_back', 'borrower', 'status']
-#     permission_required = 'catalog.can_edit_books'
+class BookInstanceUpdate(PermissionRequiredMixin, UpdateView):
+    model = BookInstance
+    fields = ['id', 'book', 'imprint', 'due_back', 'borrower', 'status']
+    permission_required = 'catalog.can_edit_books'
+    success_url = reverse_lazy('books')
 
 class BookInstanceDelete(PermissionRequiredMixin, DeleteView):
     model = BookInstance

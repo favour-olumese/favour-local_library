@@ -1,7 +1,7 @@
 {% extends "catalog/base_generic.html" %}
 
 {% block title %}
-    <title>Local Library | {{ author.last_name}} {{ author.first_name }}</title>
+    <title>Favour Local Library | {{ author.last_name}} {{ author.first_name }}</title>
 {% endblock%}
 
 {% block content %}
@@ -17,9 +17,11 @@
             {% endif %}
         {% endif %}
     </p>
-    <h3>Books</h3>
-    {% for book in author.book_set.all %}
-        <p><strong><a href="{{ book.get_absolute_url }}" style="text-decoration: none;">{{ book.title }}</a></strong></p>
-        <p>{{ book.summary }}</p>
-    {% endfor %}
+    {% if author.book_set.all %}
+        <h3>Books</h3>
+        {% for book in author.book_set.all %}
+            <p><strong><a href="{{ book.get_absolute_url }}" style="text-decoration: none;">{{ book.title }}</a></strong></p>
+            <p>{{ book.summary }}</p>
+        {% endfor %}
+    {% endif %}
 {% endblock %}

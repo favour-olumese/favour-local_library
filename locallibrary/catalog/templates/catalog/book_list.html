@@ -1,7 +1,7 @@
 {% extends "catalog/base_generic.html" %}
 
 {% block title %}
-    <title>Local Library | Books</title>
+    <title>Favour Local Library | Books</title>
 {% endblock%}
 
 {% block content %}
@@ -25,6 +25,6 @@
     {% endif %}
 
     {% if perms.catalog.can_edit_books %}
-        <button type="button"><a href="{% url 'book-create' %}">Add new book</a></button>
+    <a href="{% url 'book-create' %}"><button type="button">Add new book</button></a>
     {% endif %}
 {% endblock %}

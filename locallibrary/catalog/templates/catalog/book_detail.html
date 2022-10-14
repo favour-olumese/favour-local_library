@@ -1,7 +1,7 @@
 {% extends "catalog/base_generic.html" %}
 
 {% block title %}
-    <title>Local Library | {{ book.title }}</title>
+    <title>Favour Local Library | {{ book.title }}</title>
 {% endblock%}
 
 {% block content %}
@@ -32,6 +32,10 @@
 
             <p><strong>Id:</strong> {{ copy.id }}</p>
             {% endfor %}
+        {% endif %}
+
+        {% if perms.catalog.can_edit_books %}
+            <a href="{% url 'book_instance-create' %}"><button>Add new book instance</button></a>
         {% endif %}
     </div>
 {% endblock %}
