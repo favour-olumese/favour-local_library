@@ -2,9 +2,29 @@
 
 {% block content %}
     <h1>Delete Book</h1>
-    <p>Are you sure you want to delete the book: {{ book }}?</p>
-    <form action="" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Submit">
-    </form>
+    
+    <h5>Book Instances</h5>
+    {% if book.bookinstance_set.all %}
+        <p>
+            In order you delete this book (<strong>{{ book }}</strong>) 
+            from the library, you must first delete all instance related to it.
+        </p>
+        <p>
+            {% for copy in book.bookinstance_set.all %}
+            <hr>
+            <p>
+                <a href="{% url 'book_instance-delete' copy.id %}">
+                    {{ copy.book }} {{ copy.id }}
+                </a>
+            </p>
+            {% endfor %}
+        </p>
+    {% else %}
+        <p>Are you sure you want to delete the book: {{ book }}?</p>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Submit">
+        </form>
+        <br>
+    {% endif %}
 {% endblock %}

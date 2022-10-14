@@ -142,3 +142,27 @@ class BookDelete(PermissionRequiredMixin, DeleteView):
     model = Book
     success_url = reverse_lazy('books')
     permission_required = 'catalog.can_edit_books'
+
+# class BookInstanceCreate(PermissionRequiredMixin, CreateView):
+#     model = Book
+#     fields = ['id', 'book', 'imprint', 'due_back', 'borrower', 'status']
+#     permission_required = 'catalog.can_edit_books'
+
+# class BookCreate(PermissionRequiredMixin, CreateView):
+#     model = BookInstance
+#     fields = ['id', 'book', 'imprint', 'due_back', 'borrower', 'status']
+#     permission_required = 'catalog.can_edit_books'
+
+class BookInstanceDelete(PermissionRequiredMixin, DeleteView):
+    model = BookInstance
+    permission_required = 'catalog.can_edit_books'
+
+    def get_success_url(self):
+        # Get the primary key (id) of the book instance
+        # https://stackoverflow.com/a/13528732
+        book_instance_id = self.kwargs['pk']
+
+        # Use the book instance primary key to get the book_id referenced
+        book_reference_id =  BookInstance.objects.filter(id=book_instance_id).values('book_id')[0]['book_id']
+
+        return reverse_lazy('book-delete', kwargs={'pk': book_reference_id})
