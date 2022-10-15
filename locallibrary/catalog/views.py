@@ -149,6 +149,8 @@ class BookInstanceCreate(PermissionRequiredMixin, CreateView):
     permission_required = 'catalog.can_edit_books'
     success_url = reverse_lazy('books')
 
+# The link to updating a book instance is not on any of the templates
+# Because renew_book_librarian updates the needed portion (The date of return)
 class BookInstanceUpdate(PermissionRequiredMixin, UpdateView):
     model = BookInstance
     fields = ['id', 'book', 'imprint', 'due_back', 'borrower', 'status']
@@ -159,7 +161,7 @@ class BookInstanceDelete(PermissionRequiredMixin, DeleteView):
     model = BookInstance
     permission_required = 'catalog.can_edit_books'
 
-    def get_success_url(self):
+    def get_success_url(self, **kwargs):
         # Get the primary key (id) of the book instance
         # https://stackoverflow.com/a/13528732
         book_instance_id = self.kwargs['pk']
