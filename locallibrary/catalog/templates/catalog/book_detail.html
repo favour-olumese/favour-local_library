@@ -5,10 +5,13 @@
 {% endblock%}
 
 {% block content %}
+    {% if book.book_image %}
+        <img alt="{{ book.title }} by {{ book.author }} picture" src="{{ book.book_image.url }}" class="book-img" style="width: 70px; float: left; margin-right: 10px;">
+    {% endif %}
     <h1>Title: {{ book.title }}</h1>
 
     <p><strong>Author:</strong> <a href="{{ book.author.get_absolute_url }}">{{ book.author }}</a></p>
-    <p><strong>Summary:</strong> {{ book.summary }}</p>
+    <p style="clear: both;"><strong>Summary:</strong><br> {{ book.summary }}</p>
     <p><strong>ISBN:</strong> {{ book.isbn }}</p>
     <p><strong>Language:</strong> {{ book.language }}</p>
     <p><strong>Genre:</strong> {{ book.genre.all|join:", " }}</p>

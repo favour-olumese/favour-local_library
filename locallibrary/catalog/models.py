@@ -42,6 +42,7 @@ class Book(models.Model):
     help_text='Select a genre for this book.')
 
     language = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
+    book_image = models.ImageField(default="book_default.jpg", null=True, blank=True, upload_to='book_imgs')
 
     def __str__(self):
         return self.title
@@ -115,6 +116,7 @@ class Author(models.Model):
     last_name = models.CharField(max_length=100)
     date_of_birth = models.DateField(null=True, blank=True)
     date_of_death = models.DateField('Died',null=True, blank=True)
+    author_image = models.ImageField(null=True, blank=True, upload_to='author-imgs')
 
     class Meta:
         ordering = ['last_name', 'first_name']

@@ -1,0 +1,10 @@
+{% extends 'catalog/base_generic.html' %}
+
+{% block content %}
+<h2>Books with Genre as {{genre_name}}</h2>
+<ul>
+    {% for book in genre_book_list %}
+        <li>{{book}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

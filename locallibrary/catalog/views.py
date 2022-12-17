@@ -112,7 +112,7 @@ def renew_book_librarian(request, pk):
 
 class AuthorCreate(PermissionRequiredMixin, CreateView):
     model = Author
-    fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death']
+    fields = ['first_name', 'last_name', 'date_of_birth', 'date_of_death', 'author_image']
     initial = {'date_of_birth': '0999-12-28'}
     permission_required = 'catalog.can_edit_authors'
 
@@ -129,13 +129,12 @@ class AuthorDelete(PermissionRequiredMixin, DeleteView):
 
 class BookCreate(PermissionRequiredMixin, CreateView):
     model = Book
-    fields = ['title', 'author', 'summary', 'isbn', 'genre', 'language']
+    fields = ['title', 'author', 'summary', 'isbn', 'genre', 'language', 'book_image']
     permission_required = 'catalog.can_edit_books'
 
 class BookUpdate(PermissionRequiredMixin, UpdateView):
     model = Book
-    fields = ['title', 'author', 'summary', 'isbn', 'genre', 'language']
-    # (potential security issue if more fields are added).
+    fields = ['title', 'author', 'summary', 'isbn', 'genre', 'language', 'book_image']
     permission_required = 'catalog.can_edit_books'
 
 class BookDelete(PermissionRequiredMixin, DeleteView):
@@ -170,3 +169,21 @@ class BookInstanceDelete(PermissionRequiredMixin, DeleteView):
         book_reference_id =  BookInstance.objects.filter(id=book_instance_id).values('book_id')[0]['book_id']
 
         return reverse_lazy('book-delete', kwargs={'pk': book_reference_id})
+
+
+class GenreListView(generic.ListView):
+    model = Genre
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # To get the primary key from the url request.
+        genre_id = self.kwargs['pk']
+
+        # QuerySet of all the books of a particular genre
+        context['genre_book_list'] = Genre.objects.filter(pk=genre_id)[0].book_set.all()
+
+        # Getting the name of the genre requested based on the primary key
+        context['genre_name'] = str(Genre.objects.filter(pk=genre_id)[0])
+        return context

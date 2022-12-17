@@ -12,7 +12,8 @@
 {% endblock%}
 
 {% block content %}
-    <form action="" method="post">
+    <!-- enctype="multipart/form-data" is used because we are uploading an image in the form. -->
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
             {{ form.as_table }}
