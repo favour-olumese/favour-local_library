@@ -21,8 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-y)oeuz86%)3t433zk2yvgzn0ea^3%v6x-v9=x*&n6d238m_ac8'
-# SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+# SECRET_KEY = 'django-insecure-y)oeuz86%)3t433zk2yvgzn0ea^3%v6x-v9=x*&n6d238m_ac8'
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 
 # SECURITY WARNING: don't run with debug turned on in production
@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # For WhiteNoise
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'locallibrary.urls'
