@@ -6,7 +6,7 @@
 
 {% block content %}
     {% if author.author_image %}
-        <img alt="{{ author }}" src="{{ author.author_image.url }}">
+        <img alt="{{ author }}" src="{{ author.author_image.url }}" class="author-img">
     {% endif %}
     <h1>Author: {{ author.last_name}}, {{ author.first_name }}</h1>
     <p>

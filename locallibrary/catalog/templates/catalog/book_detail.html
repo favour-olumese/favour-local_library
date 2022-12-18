@@ -6,7 +6,7 @@
 
 {% block content %}
     {% if book.book_image %}
-        <img alt="{{ book.title }} by {{ book.author }} picture" src="{{ book.book_image.url }}" class="book-img" style="width: 70px; float: left; margin-right: 10px;">
+        <img alt="{{ book.title }} by {{ book.author }} picture" src="{{ book.book_image.url }}" class="book-img">
     {% endif %}
     <h1>Title: {{ book.title }}</h1>
 

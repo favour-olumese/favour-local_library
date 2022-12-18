@@ -6,11 +6,11 @@ const theme_btn = document.getElementById('theme_btn');
 theme_btn.addEventListener('click', function handleClick() {
 const initialHTML = '<i class="fa fa-moon-o" aria-hidden="true"></i>';
 
-if (theme_btn.innerHTML == '<i class="fa fa-moon-o" aria-hidden="true"></i>') {
-    theme_btn.innerHTML = '<i class="fa fa-sun-o" aria-hidden="true"></i>';
-} else {
-    theme_btn.innerHTML = initialHTML;
-}
+    if (theme_btn.innerHTML == '<i class="fa fa-sun-o" aria-hidden="true"></i>') {
+        theme_btn.innerHTML = '<i class="fa fa-moon-o" aria-hidden="true"></i>';
+    } else {
+        theme_btn.innerHTML = '<i class="fa fa-sun-o" aria-hidden="true"></i>';
+    }
 });
 
 // Function for changing the screen mode
