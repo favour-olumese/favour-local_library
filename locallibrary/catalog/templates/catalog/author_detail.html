@@ -21,7 +21,7 @@
         {% endif %}
     </p>
     {% if author.book_set.all %}
-        <h3>Books</h3>
+        <h3 style="clear: both;">Books</h3>
         {% for book in author.book_set.all %}
             <p><strong><a href="{{ book.get_absolute_url }}" style="text-decoration: none;">{{ book.title }}</a></strong></p>
             <p>{{ book.summary }}</p>

@@ -126,6 +126,10 @@ class Author(models.Model):
         """Return the URL to access a particular author instance."""
         return reverse('author-detail', args=[str(self.id)])
 
+    # @property
+    # def get_absolute_image_url(self):
+    #     return '%s' % (self.author_image.url)
+
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.last_name}, {self.first_name}'
