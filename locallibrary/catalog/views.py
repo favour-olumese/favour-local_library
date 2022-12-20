@@ -6,8 +6,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.urls import reverse, reverse_lazy
 from catalog.forms import RenewBookForm
 from django.contrib.auth.decorators import login_required, permission_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 
 # Create your views here.
 def index(request):
@@ -187,3 +188,8 @@ class GenreListView(generic.ListView):
         # Getting the name of the genre requested based on the primary key
         context['genre_name'] = str(Genre.objects.filter(pk=genre_id)[0])
         return context
+
+    def get_queryset(self):
+        '''This function ensures that a 404 page is displayed when we try to GET a wrong genre page.'''
+        self.genre = get_object_or_404(Genre, id=self.kwargs['pk'])
+        return Genre.objects.filter(name=self.genre)

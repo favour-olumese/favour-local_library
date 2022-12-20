@@ -19,3 +19,8 @@ function darkMode() {
     var element = document.body;
     element.classList.toggle("dark-mode");
 }
+
+// Side bar
+function show() {
+    document.getElementById('sidebar').classList.toggle('active');
+}
