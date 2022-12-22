@@ -22,11 +22,11 @@
             <div class="row">
                 <div class="col-sm-2">
                     {% block sidebar %}
-                    <div class="toggle-btn" onclick="show()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
+                        <input type="checkbox" id="menu-check">
+                        <label for="menu-check">
+                            <i class="fa fa-bars" aria-hidden="true" id="menu-open"></i>
+                            <i class="fa fa-times" aria-hidden="true" id="menu-close"></i>
+                        </label>
                         <div id="sidebar">
                             
                             
@@ -40,15 +40,15 @@
                                 {% endblock %}
                                 <li><a href="{% url 'index' %}">Home</a></li>
                                 <hr>
-                                <li><a href="{% url 'books'%}">All books</a></li>
+                                <li><a href="{% url 'books'%}">Books</a></li>
                                 <hr>
-                                <li><a href="{% url 'authors' %}">All authors</a></li>
+                                <li><a href="{% url 'authors' %}">Authors</a></li>
                                 <hr>
                             </ul>
 
                             <ul class="sidebar-nav">
                                 {% if user.is_authenticated %}
-                                    <li>User: {{ user.get_username }}</li>
+                                    <strong><li>User: {{ user.get_username }}</li></strong>
 
                                     <li><a href="{% url 'my-borrowed' %}">My borrowed</a></li>
 
@@ -61,7 +61,7 @@
                             <ul class="sidebar-nav">
                                 {% if perms.catalog.can_mark_returned %}
                                     <hr>
-                                    <li>Staff</li>
+                                    <strong><li>Staff</li></strong>
                                     <li><a href="{% url 'borrowed-books' %}">All borrowed books</a></li>
                                 {% endif %}
                             </ul>

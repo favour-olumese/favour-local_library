@@ -28,6 +28,8 @@ def index(request):
 
     book_starts_with_t = Book.objects.filter(title__istartswith='T').count()
 
+    genres = Genre.objects.all()
+
     # Number of visits to this view, as counted in the session variable
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
@@ -40,6 +42,7 @@ def index(request):
         'num_genres': num_genres,
         'book_starts_with_t': book_starts_with_t,
         'num_visits': num_visits,
+        'genres': genres,
     }
 
     # Render the HTML template index.html with the data in the context variable

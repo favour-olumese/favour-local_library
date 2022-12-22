@@ -7,22 +7,49 @@
 {% block content %}
     <h1>Favour Local Library Home</h1>
     <p>
-        Welcome to Favour LocalLibrary, a Django project based on
-        <a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django" target="_blank"><em>Mozilla Developer Network</em></a> 
-        Django tutorial Local Library.
+        Welcome to Favour Local Library (built using the Django Framework). 
+        New users are to visit the library counter and drop their details to get 
+        access to the digital library.
     </p>
+
+    <p>
+        The focus of this platform is for members and non-member to know the books available
+        in the library and for members to keep track of the books they have borrowed from the library.
+        At the moment, all book borrowing are physical and not online. We hope you find the book
+        you are looking for.
+    </p>
+
     <h2>Dynamic content</h2>
     <p>The library has the following record counts:</p>
     <ul>
-        <li><strong>Books:</strong> {{ num_books }}</li>
-        <li><strong>Copies:</strong> {{ num_instance }}</li>
-        <li><strong>Copies available:</strong> {{ num_instance_available }}</li>
-        <li><strong>Authors:</strong> {{ num_authors }}</li>
+        <li><strong>All Books:</strong> {{ num_books }}</li>
+        <li><strong>All Authors:</strong> {{ num_authors }}</li>
         <li><strong>Genres:</strong> {{ num_genres }}</li>
-        <li><strong>Books starting with letter T:</strong> {{ book_starts_with_t }}</li>
+        <!-- <li><strong>Copies:</strong> {{ num_instance }}</li>
+        <li><strong>Copies available:</strong> {{ num_instance_available }}</li> -->
+        
+        <!-- <li><strong>Books starting with letter T:</strong> {{ book_starts_with_t }}</li> -->
     </ul>
 
+    {% for genre in genres %}
+        <h3 style="clear: both; padding-top: 10px;">{{genre.name}}</h3>
+        
+        {% for book in genre.book_set.all %}
+            <div class="card">
+                <a href="{{ book.get_absolute_url }}">
+                    {% if book.book_image %}
+                        <img src="{{ book.book_image.url }}" style="width: 100%; height: 10rem">
+                    {% endif %}
+                    {{ book.title|truncatewords:5 }}<br>
+                    ({{ book.author.last_name }} {{ book.author.first_name|first }}.) 
+                </a>
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    
+
     <!-- The pluralize tag add a 's' to time if num_visits > 1 -->
-    <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}</p>
+    <!-- <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}</p> -->
 
 {% endblock %}

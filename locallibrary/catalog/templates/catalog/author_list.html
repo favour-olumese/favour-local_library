@@ -5,17 +5,17 @@
 {% endblock%}
 
 {% block content %}
-    <h1>Author List</h1>
+    <h1>Authors</h1>
     {% if author_list %}
     <div>
         {% for author in author_list %}
-            <div class="card" style="height: 260px;">
+            <div class="card">
                 <a href="{{ author.get_absolute_url }}">
                     {% if author.author_image %}
                         <img src="{{ author.author_image.url }}" style="width: 100%; height: 10rem">
                     {% endif %}
                     <br>
-                    {{ author.last_name }}, {{ author.first_name }}<br>
+                    <span>{{ author.last_name }}, {{ author.first_name }}</span><br>
                 </a>
                 <div class="container">
                     {% if perms.catalog.can_edit_authors %}
