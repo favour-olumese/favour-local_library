@@ -148,6 +148,50 @@ label #menu-close {
     display: none;
 }
 
+/* INDEX PAGE */
+.slider-arrow {
+    font-size: 40px;
+    margin: 0 5px;
+    cursor: pointer;
+    color: #555;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    line-height: 19px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.slider-arrow:hover {
+    background: #222;
+    color: white;
+}
+
+section {
+    width: 98%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+}
+
+/* section::-webkit-scrollbar {
+    display: none;
+} */
+
+section .product {
+    /* min-width: 24%; */
+    /* height: 90%; */
+    background: whitesmoke;
+    margin: 0 20px 0 0;
+    border-radius: 20px;
+    position: relative;
+    left: 0;
+    transition: 0.5s;
+}
+
+
+
 /* MEDIA QUERIES */
 @media screen and (max-width: 640px) {
     
