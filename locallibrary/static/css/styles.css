@@ -190,6 +190,14 @@ section .product {
     transition: 0.5s;
 }
 
+.pagination {
+    box-sizing: border-box;
+    padding-top: 15px;
+    color: rgb(119, 0, 255);
+    clear: both;
+    justify-content: center;
+}
+
 
 
 /* MEDIA QUERIES */
