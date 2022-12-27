@@ -32,11 +32,15 @@
     </ul>
 
     {% for genre in genres %}
-        <h3 style="clear: both; padding-top: 10px;">{{genre.name}}</h3>
-        <p>
-            <span class="slider-arrow">&#139;</span>
-            <span class="slider-arrow">&#155;</span>
-        </p>
+        {% if genre.book_set.all|length != 0%}
+            <h3 style="clear: both; padding-top: 10px;">{{genre.name}}</h3>
+            {# {% if genre.book_set.all|length > 2%} #}
+            <p>
+                <span class="slider-arrow">&#139;</span>
+                <span class="slider-arrow">&#155;</span>
+            </p>
+            {# {% endif %} #}
+        {% endif %}
         <section>
             {% for book in genre.book_set.all %}
                 <div class="product">
