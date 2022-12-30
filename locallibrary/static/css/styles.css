@@ -1,4 +1,18 @@
-/* Sidebar navigation */
+/* GLOBAL */
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(223, 39, 7);
+}
+
+
+/* SIDEBAR */
 .sidebar-nav {
     /* margin-top: 15px; */
     padding: 0;
@@ -14,7 +28,8 @@
     transition: 0.3s;
 }
 
-/* Dark and light theme */
+
+/* DARK AND LIGHT MODE */
 body {
     padding-top: 25px;
     background-color: white;
@@ -29,9 +44,31 @@ body {
     color: white;
 }
 
-/* Create Icon Buttons */
-/* https://www.w3schools.com/howto/howto_css_icon_buttons.asp */
-/* Style buttons */
+.light-mode {
+    background-color: white;
+    color: black;
+}
+
+
+/* MENU */
+label #menu-open,
+label #menu-close {
+    color: rgb(0, 0, 255);
+    font-size: 30px;
+    display: none;
+    cursor: pointer;
+    z-index: 200;
+    position: absolute;
+    top: 3px;
+    transition-delay: 0.5s;
+}
+
+#menu-check {
+    display: none;
+}
+
+
+/* THEME BUTTON */
 .btn {
     background-color: rgb(207, 218, 214);
     border-color: none;
@@ -42,41 +79,10 @@ body {
     margin-bottom: 1em;
 }
   
-/* Darker background on mouse-over */
 .btn:hover {
     background-color: gray;
 }
 
-.dark-mode .btn {
-    background-color: black;
-    color: white;
-}
-
-.dark-mode .btn:hover{
-    background-color: gray;
-}
-
-/* Images in Cards */
-.book-img {
-    width: 60px;
-    float: left;
-    margin-right: 10px;
-}
-
-.author-img {
-    width: 60px;
-    float: left;
-    margin-right: 10px;
-}
-
-/* Footer */
-.footer {
-    background-color: grey;
-    bottom: 0;
-    width: 100%;
-    margin-top: auto;
-    text-align: center;
-}
 
 /* CARD FOR LIST OF BOOKS AND AUTHORS */
 
@@ -100,12 +106,54 @@ body {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
 }
 
+/* Images in Cards */
+.book-img {
+    width: 60px;
+    float: left;
+    margin-right: 10px;
+}
+
+.author-img {
+    width: 60px;
+    float: left;
+    margin-right: 10px;
+}
+
+
+/* PAGINATION */
+.pagination {
+    box-sizing: border-box;
+    padding-top: 15px;
+    color: rgb(119, 0, 255);
+    clear: both;
+    justify-content: center;
+}
+
+/* FOOTER */
+.footer {
+    background-color: grey;
+    bottom: 0;
+    width: 100%;
+    margin-top: auto;
+    text-align: center;
+}
+
+/* DARK MODE */
+.dark-mode a:hover {
+    color: rgb(219, 223, 7);
+}
+
+.dark-mode .btn {
+    background-color: black;
+    color: white;
+}
+
+.dark-mode .btn:hover{
+    background-color: gray;
+}
+
 .dark-mode .card:hover {
     box-shadow: 0 8px 16px 0 rgba(133, 133, 133, 0.5);
-}
-  /* Add some padding inside the card container */
-.container {
-    text-align: center;
 }
 
 .dark-mode .card {
@@ -113,43 +161,11 @@ body {
     background-color: black;
 }
 
-/* GLOBAL */
-li {
-    list-style: none;
-}
 
-a {
-    text-decoration: none;
-}
-
-.dark-mode a:hover {
-    color: rgb(219, 223, 7);
-}
-
-a:hover {
-    color: rgb(223, 39, 7);
-}
-
-label #menu-open,
-label #menu-close {
-    color: rgb(0, 0, 255);
-    font-size: 30px;
-    display: none;
-    cursor: pointer;
-    z-index: 200;
-    position: absolute;
-    top: 3px;
-    transition-delay: 0.5s;
-}
-
-
-
-#menu-check {
-    display: none;
-}
 
 /* INDEX PAGE */
-.slider-arrow {
+/* Sliding Arrows */
+/* .slider-arrow {
     font-size: 40px;
     margin: 0 5px;
     cursor: pointer;
@@ -165,14 +181,15 @@ label #menu-close {
 .slider-arrow:hover {
     background: #222;
     color: white;
-}
+} */
 
 section {
-    width: 98%;
+    width: 90%;
     margin: auto;
     display: flex;
     align-items: center;
     overflow-x: auto;
+    padding: 20px;
 }
 
 /* section::-webkit-scrollbar {
@@ -180,22 +197,12 @@ section {
 } */
 
 section .product {
-    /* min-width: 24%; */
-    /* height: 90%; */
-    background: whitesmoke;
+    /* background: rgb(255, 255, 255); */
     margin: 0 20px 0 0;
     border-radius: 20px;
     position: relative;
     left: 0;
     transition: 0.5s;
-}
-
-.pagination {
-    box-sizing: border-box;
-    padding-top: 15px;
-    color: rgb(119, 0, 255);
-    clear: both;
-    justify-content: center;
 }
 
 

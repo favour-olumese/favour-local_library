@@ -16,11 +16,13 @@
         <!-- Add additional CSS in static file -->
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
     </head>
     <body style="height: 100vh; display: flex; flex-direction: column;">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-2">
+
                     {% block sidebar %}
                         <input type="checkbox" id="menu-check">
                         <label for="menu-check">
@@ -36,8 +38,8 @@
                                     <button id="theme_btn" onclick="darkMode()" class="btn">
                                         <i class="fa fa-moon-o" aria-hidden="true"></i>
                                     </button>
-                                    <script type="text/javascript" src="{% static 'js/index.js '%}"></script>
                                 {% endblock %}
+
                                 <li><a href="{% url 'index' %}">Home</a></li>
                                 <hr>
                                 <li><a href="{% url 'books'%}">Books</a></li>
@@ -103,5 +105,5 @@
             </div>
         {% endblock %}
     </body>
+    <script type="text/javascript" src="{% static 'js/index.js '%}"></script>
 </html>
-<script type="text/javascript" src="{% static 'js/index.js '%}"></script>
