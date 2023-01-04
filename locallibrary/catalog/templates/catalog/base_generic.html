@@ -16,6 +16,7 @@
         <!-- Add additional CSS in static file -->
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+        <link rel="icon"  href="{% static 'img/favicon.ico' %}"/>
 
     </head>
     <body style="height: 100vh; display: flex; flex-direction: column;">
@@ -104,6 +105,6 @@
                 <p><a href="https://github.com/favour-olumese" target="_blank" style="text-decoration: none; color:antiquewhite">Favour Olumese</a></p>
             </div>
         {% endblock %}
+        <script type="text/javascript" src="{% static 'js/index.js '%}"></script>
     </body>
-    <script type="text/javascript" src="{% static 'js/index.js '%}"></script>
 </html>
