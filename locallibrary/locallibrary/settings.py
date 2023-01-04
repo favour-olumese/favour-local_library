@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-y)oeuz86%)3t433zk2yvgzn0ea^3%v6x-v9=x*&n6d238m_ac8
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['.alwaysdata.net', '127.0.0.1']
+ALLOWED_HOSTS = ['.alwaysdata.net', '127.0.0.1', '.pythonanywhere.com']
 
 # Application definition
 

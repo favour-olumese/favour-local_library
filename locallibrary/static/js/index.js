@@ -13,7 +13,7 @@ var theme_btn = document.getElementById('theme_btn');
 if (theme == 'dark'){
     darkMode();
     document.getElementById('theme_btn').onclick = lightMode;
-    theme_btn.innerHTML = '<i class="fa fa-sun-o" aria-hidden="true"></i>';  
+    theme_btn.innerHTML = '<i class="fa fa-sun-o" aria-hidden="true"></i>';
 } else {
     lightMode();
     document.getElementById('theme_btn').onclick = darkMode;

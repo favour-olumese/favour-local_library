@@ -78,7 +78,7 @@ label #menu-close {
     border-radius: 10px;
     margin-bottom: 1em;
 }
-  
+
 .btn:hover {
     background-color: gray;
 }
@@ -100,7 +100,7 @@ label #menu-close {
     text-align: center;
     border-radius: 5px;
 }
-  
+
   /* On mouse-over, add a deeper shadow */
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
@@ -209,7 +209,7 @@ section .product {
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 640px) {
-    
+
     #sidebar {
         position: fixed;
         left: -200px;
