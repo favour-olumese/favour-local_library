@@ -92,7 +92,7 @@ label #menu-close {
     transition: 0.3s;
     width: 10rem;
     /* height: 10px; */
-    height: 280px;
+    height: 262px;
     float: left;
     margin-right: 5px;
     margin-top: 5px;
@@ -104,6 +104,17 @@ label #menu-close {
   /* On mouse-over, add a deeper shadow */
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+}
+
+.card .card-text {
+    width: 100%;
+    height: 26%;
+    font-size: 15px;
+}
+
+.card .container a{
+    padding: 0 3px;
+    font-size: 20px;
 }
 
 /* Images in Cards */

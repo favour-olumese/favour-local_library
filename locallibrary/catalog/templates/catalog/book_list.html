@@ -10,19 +10,21 @@
     {% if book_list %}
         <div>
             {% for book in book_list %}
-                <div class="card">
+                <div class="card" style="display:block;">
                     <a href="{{ book.get_absolute_url }}">
                         {% if book.book_image %}
                             <img src="{{ book.book_image.url }}" style="width: 100%; height: 10rem">
                         {% endif %}
-                        {{ book.title|truncatewords:5 }}<br>
-                        ({{ book.author.last_name }} {{ book.author.first_name|first }}.) 
+                        <div class="card-text">
+                            {{ book.title|truncatewords:5 }}<br>
+                            ({{ book.author.last_name }} {{ book.author.first_name|first }}.) 
+                        </div>
                     </a>
 
                     <div class="container">
                         {% if perms.catalog.can_edit_books %}
-                            <a href="{% url 'book-update' book.id %}">Edit book</a>
-                            <a href="{% url 'book-delete' book.id %}">Delete book</a>
+                            <a href="{% url 'book-update' book.id %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a href="{% url 'book-delete' book.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                         {% endif %}
                     </div>
                 </div>

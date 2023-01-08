@@ -32,30 +32,34 @@
     </ul>
 
     {% for genre in genres %}
-        {% if genre.book_set.all|length != 0%}
+        <!-- Books with no content are not to be listed -->
+        {% if genre.book_set.all|length != 0 %}
             <h3 style="clear: both; padding-top: 10px;">{{genre.name}}</h3>
             <!-- FOR CONTROL OF CAROUSELS -->
             {# {% if genre.book_set.all|length > 2%} #}
+            <!-- Slider arrows -->
             <!-- <p>
                 <span class="slider-arrow">&#139;</span>
                 <span class="slider-arrow">&#155;</span>
             </p> -->
             {# {% endif %} #}
-        {% endif %}
-        <section>
-            {% for book in genre.book_set.all %}
-                <div class="product">
-                    <div class="card">
-                        <a href="{{ book.get_absolute_url }}">
-                            {% if book.book_image %}
-                                <img src="{{ book.book_image.url }}" style="width: 100%; height: 10rem">
-                            {% endif %}
-                            {{ book.title|truncatewords:5 }}<br>
-                            ({{ book.author.last_name }} {{ book.author.first_name|first }}.) 
-                        </a>
+
+            <section>
+                {% for book in genre.book_set.all %}
+                    <div class="product">
+                        <div class="card">
+                            <a href="{{ book.get_absolute_url }}">
+                                {% if book.book_image %}
+                                    <img src="{{ book.book_image.url }}" style="width: 100%; height: 10rem">
+                                {% endif %}
+                                {{ book.title|truncatewords:5 }}<br>
+                                ({{ book.author.last_name }} {{ book.author.first_name|first }}.) 
+                            </a>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
-        </section>
+                {% endfor %}
+            </section>
+        {% endif %}
+        
     {% endfor %}
 {% endblock %}
