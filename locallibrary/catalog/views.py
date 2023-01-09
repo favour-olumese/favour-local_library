@@ -8,6 +8,7 @@ from catalog.forms import RenewBookForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponseRedirect, Http404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.db.models import Q
 
 
 # Create your views here.
@@ -196,3 +197,21 @@ class GenreListView(generic.ListView):
         '''This function ensures that a 404 page is displayed when we try to GET a wrong genre page.'''
         self.genre = get_object_or_404(Genre, id=self.kwargs['pk'])
         return Genre.objects.filter(name=self.genre)
+
+
+def search(request):
+    search_data = request.GET.get("search")
+    author_query = Author.objects.filter(Q(first_name__icontains=search_data) | Q(last_name__icontains=search_data))
+    book_query = Book.objects.filter(title__icontains=search_data)
+    query_count = len(author_query) + len(book_query)
+
+    search_value = author_query
+    context = {
+        'search_data': search_data,
+        'author_query': author_query,
+        'book_query': book_query,
+        'query_count': query_count,
+    }
+
+    return render(request, 'catalog/search.html', context)
+# TODO: To prevent search from returning any data when no data is inputted

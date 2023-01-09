@@ -68,6 +68,11 @@
                                     <li><a href="{% url 'borrowed-books' %}">All borrowed books</a></li>
                                 {% endif %}
                             </ul>
+                            <!-- Search form -->
+                            <form action="{% url 'search' %}" method="get">
+                                <input type="text" name="search" style="width: 100%;" placeholder="Search..." title="Search for books and authors">
+                                <input type="submit" value="Search" style="margin-top: 2px;">
+                            </form>
                         </div>
                     {% endblock %}
                 </div>

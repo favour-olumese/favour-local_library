@@ -1,0 +1,24 @@
+{% extends "catalog/base_generic.html" %}
+
+{% block content %}
+    <h3>{{ query_count }} result{{ query_count|pluralize }} for {{ search_data }}</h3>
+    {% if author_query %}
+        <h4>Authors</h4>
+        <ul>
+            {% for author in author_query %}
+                <li><a href="{% url 'author-detail' author.id %}}">{{ author }}</a></li>
+            {% endfor %}
+        </ul>
+
+    {% endif %}
+
+    
+    {% if book_query %}
+        <h4>Books</h4>
+        <ul>
+            {% for book in book_query %}
+                <li><a href="{% url 'book-detail' book.id %}}">{{ book }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
