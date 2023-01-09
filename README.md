@@ -7,13 +7,13 @@ This web application is an online catalog for a small local library where users 
 ![Home page image](https://user-images.githubusercontent.com/70489864/210656756-86c2a945-74b1-4274-b9f9-6882b5e23e19.png)
 
 #### Book List Page
-![Book list page image](https://user-images.githubusercontent.com/70489864/210658352-988747b7-6e20-4923-8143-092c2ac1f050.png)
+![Book list page image](https://user-images.githubusercontent.com/70489864/211299550-c1740c1b-e855-4e71-bd93-8bae937953f1.png)
 
 #### Book Detail Page
 ![Detail of a book image](https://user-images.githubusercontent.com/70489864/210658751-3a4ea2d3-550f-4e6b-b2da-58743c06270f.png)
 
 #### Author List Page
-![Author list page image](https://user-images.githubusercontent.com/70489864/210658926-28cdd0a0-e3a8-4aff-ad31-da1b31d7b088.png)
+![Author list page image](https://user-images.githubusercontent.com/70489864/211299659-ee6f238b-a7e0-4894-ad8a-127c5522c8d5.png)
 
 #### Author Detail Page
 ![image](https://user-images.githubusercontent.com/70489864/210659647-7ad5c59f-f0fe-46ac-bc71-bdeb779c46d9.png)
