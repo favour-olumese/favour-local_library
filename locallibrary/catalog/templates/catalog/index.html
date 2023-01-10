@@ -22,12 +22,11 @@
     <h2>Library stats</h2>
     <p>The library has the following record counts:</p>
     <ul>
-        <li><strong>All Books:</strong> {{ num_books }}</li>
-        <li><strong>All Authors:</strong> {{ num_authors }}</li>
+        <li><strong>Books:</strong> {{ num_books }}</li>
+        <li><strong>Authors:</strong> {{ num_authors }}</li>
         <li><strong>Genres:</strong> {{ num_genres }}</li>
         <!-- <li><strong>Copies:</strong> {{ num_instance }}</li>
         <li><strong>Copies available:</strong> {{ num_instance_available }}</li> -->
-        
         <!-- <li><strong>Books starting with letter T:</strong> {{ book_starts_with_t }}</li> -->
     </ul>
 
@@ -45,7 +44,8 @@
             {# {% endif %} #}
 
             <section>
-                {% for book in genre.book_set.all %}
+                <!-- Using the slice filter to reduce the query list -->
+                {% for book in genre.book_set.all|slice:":7" %}
                     <div class="product">
                         <div class="card" title="{{ book.title }}">
                             <a href="{{ book.get_absolute_url }}">
@@ -57,7 +57,15 @@
                             </a>
                         </div>
                     </div>
+
                 {% endfor %}
+                {% if genre.book_set.all|length > 7 %}
+                <div class="product">
+                    <div class="card" style="justify-content: center;">
+                        <a href="{% url 'genre_book_list' genre.id %}">More</a>
+                    </div>
+                </div>
+                {% endif %}
             </section>
         {% endif %}
         

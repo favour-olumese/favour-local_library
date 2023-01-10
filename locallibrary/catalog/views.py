@@ -201,11 +201,23 @@ class GenreListView(generic.ListView):
 
 def search(request):
     search_data = request.GET.get("search")
+
+    # Prevent whitespace and empty search 
+    if search_data == '' or search_data == ' ':
+        query_count = 0
+
+        context = {
+            'search_data': search_data,
+            'query_count': query_count,
+        }
+
+        return render(request, 'catalog/search.html', context)
+
+    # Check if search can be found in Author and Book models
     author_query = Author.objects.filter(Q(first_name__icontains=search_data) | Q(last_name__icontains=search_data))
     book_query = Book.objects.filter(title__icontains=search_data)
     query_count = len(author_query) + len(book_query)
 
-    search_value = author_query
     context = {
         'search_data': search_data,
         'author_query': author_query,
@@ -214,4 +226,3 @@ def search(request):
     }
 
     return render(request, 'catalog/search.html', context)
-# TODO: To prevent search from returning any data when no data is inputted
