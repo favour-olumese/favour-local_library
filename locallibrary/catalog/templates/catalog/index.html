@@ -62,7 +62,7 @@
                 {% if genre.book_set.all|length > 7 %}
                 <div class="product">
                     <div class="card" style="justify-content: center;">
-                        <a href="{% url 'genre_book_list' genre.id %}">More</a>
+                        <a href="{% url 'genre_book_list' genre.id %}" style="font-size: 25px;">More</a>
                     </div>
                 </div>
                 {% endif %}

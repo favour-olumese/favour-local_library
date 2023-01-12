@@ -200,6 +200,7 @@ class GenreListView(generic.ListView):
 
 
 def search(request):
+    """View for searching for books and authors."""
     search_data = request.GET.get("search")
 
     # Prevent whitespace and empty search 
@@ -226,3 +227,15 @@ def search(request):
     }
 
     return render(request, 'catalog/search.html', context)
+
+def page_not_found(request, exception):
+    """View for 404 error."""
+    return render(request, '404.html')
+
+
+def handler500(request, exception=None, *_, **_k):
+    print("yeah I got called")
+
+    return render(request, "404.html", {
+        "exception": exception
+    })

@@ -45,3 +45,7 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
 ]
+
+# For 404 page.
+handler404 = 'catalog.views.page_not_found'
+handler500 = 'catalog.views.handler500'
