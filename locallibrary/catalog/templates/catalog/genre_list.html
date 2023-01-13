@@ -6,7 +6,8 @@
 
 {% block content %}
     <!-- pluralize adds an "s" to Book when we have more than one book. -->
-    <h2>{{genre_name}} Genre Book{{ genre_book_list.count|pluralize }}</h2>
+    <h2>{{genre_name}} Genre Book{{ num_books|pluralize }}</h2>
+    <strong>{{ num_books }} book{{ num_books|pluralize }}</strong>
 
     {% if genre_book_list %}
         <div>
@@ -16,7 +17,7 @@
                         {% if book.book_image %}
                             <img src="{{ book.book_image.url }}" style="width: 100%; height: 10rem" alt="{{ book }} image">
                         {% endif %}
-                        {{ book.title|truncatewords:5 }}<br>
+                        {{ book|truncatewords:5 }}<br>
                         ({{ book.author.last_name }} {{ book.author.first_name|first }}.) 
                     </a>
 

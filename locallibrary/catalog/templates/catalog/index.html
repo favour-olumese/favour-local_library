@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Favour Local Library Home</h1>
+    <h1>Favour Local Library</h1>
     <p>
-        Welcome to Favour Local Library (built using the Django Framework). 
+        Welcome to Favour Local Library.
         New users are to visit the library counter and drop their details to get 
         access to the digital library.
     </p>
@@ -24,7 +24,7 @@
     <ul>
         <li><strong>Books:</strong> {{ num_books }}</li>
         <li><strong>Authors:</strong> {{ num_authors }}</li>
-        <li><strong>Genres:</strong> {{ num_genres }}</li>
+        <!-- <li><strong>Genres:</strong> {{ num_genres }}</li> -->
         <!-- <li><strong>Copies:</strong> {{ num_instance }}</li>
         <li><strong>Copies available:</strong> {{ num_instance_available }}</li> -->
         <!-- <li><strong>Books starting with letter T:</strong> {{ book_starts_with_t }}</li> -->
@@ -47,7 +47,7 @@
                 <!-- Using the slice filter to reduce the query list -->
                 {% for book in genre.book_set.all|slice:":7" %}
                     <div class="product">
-                        <div class="card" title="{{ book.title }}">
+                        <div class="card" title="{{ book }}">
                             <a href="{{ book.get_absolute_url }}">
                                 {% if book.book_image %}
                                     <img src="{{ book.book_image.url }}" style="width: 100%; height: 10rem" alt="{{ book }}">

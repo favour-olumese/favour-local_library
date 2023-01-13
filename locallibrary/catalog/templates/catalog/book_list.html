@@ -10,7 +10,7 @@
     {% if book_list %}
         <div>
             {% for book in book_list %}
-                <div class="card" title="{{ book.title }}" style="display:block;">
+                <div class="card" title="{{ book }}" style="display:block;">
                     <a href="{{ book.get_absolute_url }}">
                         {% if book.book_image %}
                             <img src="{{ book.book_image.url }}" style="width: 100%; height: 10rem" alt="{{ book }}">

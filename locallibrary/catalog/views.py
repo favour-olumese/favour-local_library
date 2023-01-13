@@ -188,6 +188,7 @@ class GenreListView(generic.ListView):
 
         # QuerySet of all the books of a particular genre
         context['genre_book_list'] = Genre.objects.filter(pk=genre_id)[0].book_set.all()
+        context['num_books'] = Genre.objects.filter(pk=genre_id)[0].book_set.all().count()
 
         # Getting the name of the genre requested based on the primary key
         context['genre_name'] = str(Genre.objects.filter(pk=genre_id)[0])
@@ -230,12 +231,17 @@ def search(request):
 
 def page_not_found(request, exception):
     """View for 404 error."""
+    print("404 error")
+    print(exception)
+
     return render(request, '404.html')
 
 
 def handler500(request, exception=None, *_, **_k):
-    print("yeah I got called")
+    """View for status 500 error."""
+    print("500 error")
+    print(exception)
 
-    return render(request, "404.html", {
-        "exception": exception
-    })
+    return render(request, "404.html", {'exception': exception})
+
+# I have redirected both the 404 and 500 errors to the 404.html.
