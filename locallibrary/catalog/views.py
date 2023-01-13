@@ -88,13 +88,13 @@ class BorrowedBooksListView(PermissionRequiredMixin, generic.ListView):
 def renew_book_librarian(request, pk):
     book_instance = get_object_or_404(BookInstance, pk=pk)
 
-    # If this is a POST request, the process and 
+    # If this is a POST request, the process and
     # populate it wwith data from the request (binding).
     form = RenewBookForm(request.POST)
 
     # Check if the form is valid:
     if form.is_valid():
-        # process the data in form.cleaned_data as required 
+        # process the data in form.cleaned_data as required
         # (here we just write it to the model due_back field)
         book_instance.due_back = form.cleaned_data['renewal_date']
         book_instance.save()
@@ -102,7 +102,7 @@ def renew_book_librarian(request, pk):
         # Redirect to a new URL:
         return HttpResponseRedirect(reverse('borrowed-books'))
 
-    # If this is a GET reques 
+    # If this is a GET reques
     # (or any other method) create the default form.
     else:
         proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
@@ -204,7 +204,7 @@ def search(request):
     """View for searching for books and authors."""
     search_data = request.GET.get("search")
 
-    # Prevent whitespace and empty search 
+    # Prevent whitespace and empty search
     if search_data == '' or search_data == ' ':
         query_count = 0
 
@@ -242,6 +242,6 @@ def handler500(request, exception=None, *_, **_k):
     print("500 error")
     print(exception)
 
-    return render(request, "404.html", {'exception': exception})
+    return render(request, "500.html")
 
 # I have redirected both the 404 and 500 errors to the 404.html.
