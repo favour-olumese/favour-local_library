@@ -4,16 +4,19 @@ This web application is an online catalog for a small local library where users 
 
 ### Some Image Pages for Libarians
 #### Homepage
-![Home page image](https://user-images.githubusercontent.com/70489864/210656756-86c2a945-74b1-4274-b9f9-6882b5e23e19.png)
+![Home page image](https://user-images.githubusercontent.com/70489864/212545024-4cdc4a54-64a5-4dc5-aaf0-3272d09a30a0.png)
 
 #### Book List Page
-![Book list page image](https://user-images.githubusercontent.com/70489864/211299550-c1740c1b-e855-4e71-bd93-8bae937953f1.png)
+![Book list page image](https://user-images.githubusercontent.com/70489864/212545102-89915e9e-15da-4d28-897b-67bf3cadc5ad.png)
 
 #### Book Detail Page
-![Detail of a book image](https://user-images.githubusercontent.com/70489864/210658751-3a4ea2d3-550f-4e6b-b2da-58743c06270f.png)
+![Detail of a book image](https://user-images.githubusercontent.com/70489864/212545194-1af01663-0539-48d4-a937-0a604159c4fe.png)
 
 #### Author List Page
-![Author list page image](https://user-images.githubusercontent.com/70489864/211299659-ee6f238b-a7e0-4894-ad8a-127c5522c8d5.png)
+![Author list page image](https://user-images.githubusercontent.com/70489864/212545239-743fa892-5afd-4d6e-a93c-3d45846f671e.png)
 
 #### Author Detail Page
-![image](https://user-images.githubusercontent.com/70489864/210659647-7ad5c59f-f0fe-46ac-bc71-bdeb779c46d9.png)
+![Author detail page](https://user-images.githubusercontent.com/70489864/212545271-a3af8a24-a6a5-4c73-ae39-81495aa920f1.png)
+
+### Genre Page
+![Genre page](https://user-images.githubusercontent.com/70489864/212545560-9f7d0019-e442-44f4-a078-938040cace68.png)
