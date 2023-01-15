@@ -32,6 +32,11 @@ a:hover {
     transition: 0.3s;
 }
 
+/* SEARCH BAR */
+#search {
+    width: 90%;
+}
+
 
 /* DARK AND LIGHT MODE */
 body {
@@ -180,7 +185,10 @@ label #menu-close {
     background-color: black;
 }
 
-
+.dark-mode #search {
+    background-color: black;
+    color: white;
+}
 
 /* INDEX PAGE */
 /* Sliding Arrows */
